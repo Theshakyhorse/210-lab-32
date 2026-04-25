@@ -26,22 +26,32 @@ int main() {
     }
     cout << endl;
 
-    for (int i = line.size(); i > 0; i--){
-        cout << "Time: " << (line.size() - i)+1 << endl;
+    int i = 1;
+    //performs probability based actions until deque is empty
+    while (!line.empty()){
+        cout << "Time: " << i << " Operation: ";
         int r = rand()%100;
         if (!line.empty()) {
             if (r < 45) {
                 Car c = Car();
                 line.push_back(c);
+                cout << "joined lane: ";
                 c.print();
-                cout << " joins the line" << endl;
             }
             else {
+                cout << "Car paid: " << endl;
                 line[0].print();
                 line.pop_front();
-                cout << " pays its toll and leaves" << endl;
+            }
+            cout << endl << "Queue:" << endl;
+            for (int i = 0; i < line.size(); i++) {
+                if (!line.empty()) {
+                    line[i].print();
+                }
             }
         }
+        i++;
+        cout << endl;
     }
 
     return 0;
