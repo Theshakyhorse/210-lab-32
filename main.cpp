@@ -2,9 +2,10 @@
 #include <iostream>
 #include "Car.h"
 #include <deque>
+#include <iomanip>
 using namespace std;
 
-const int Size = 2;
+const int Size = 2, W = 15;
 
 int main() {
     srand(time(0));
@@ -21,11 +22,12 @@ int main() {
     cout << "Initial queue:" << endl;
     for (int i = 0; i < line.size(); i++) {
         if (!line.empty()) {
+            cout << setw(W);
             line[i].print();
+            cout << endl;
         }
     }
-    cout << endl;
-
+    
     int i = 1;
     //performs probability based actions until deque is empty
     while (!line.empty()){
@@ -39,19 +41,26 @@ int main() {
                 c.print();
             }
             else {
-                cout << "Car paid: " << endl;
+                cout << "Car paid: ";
                 line[0].print();
                 line.pop_front();
             }
-            cout << endl << "Queue:" << endl;
+        }
+        //outputs current data in deque
+        cout << endl << "Queue:" << endl;
+        if (!line.empty()) {
             for (int i = 0; i < line.size(); i++) {
                 if (!line.empty()) {
+                    cout << setw(W);
                     line[i].print();
+                    cout << endl;
                 }
             }
         }
+        else {
+            cout << setw(W) << "Empty" << endl;
+        }
         i++;
-        cout << endl;
     }
 
     return 0;
