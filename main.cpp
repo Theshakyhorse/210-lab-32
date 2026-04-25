@@ -7,17 +7,20 @@ using namespace std;
 const int Size = 2;
 
 int main() {
-
+    //decalres a deque for Car
     deque<Car> line;
 
+    //fills the deque with data
     for (int i = 0; i < Size; i++){
         Car c = Car();
         line.push_back(c);
     }
 
-    for (int i = line.size(); i > 0; i++) {
-        
-        line.pop_front();
+    //outputs data
+    for (int i = 0; i < line.size(); i++) {
+        if (!line.empty()) {
+            line[i].print();
+        }
     }
 
     return 0;
