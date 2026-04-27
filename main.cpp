@@ -17,16 +17,21 @@ int main() {
     //fills with data
     for (int i = 0; i < LANES; i++){
         Car c = Car();
+        Car c1 = Car();
         line[i].push_back(c);
+        line[i].push_back(c1);
     }
 
     //outputs data
     cout << "Initial queue:" << endl;
     for (int i = 0; i < LANES; i++) {
-        if (!line[i].empty()) {
-            cout << setw(W);
-            line[i][0].print();
-            cout << endl;
+        cout << "Lane " << i+1 << ":" << endl;
+        for (int j = 0; j < Size; j++) {
+            if (!line[i].empty()) {
+                cout << setw(W);
+                line[i][0].print();
+                cout << endl;
+            }
         }
     }
     
