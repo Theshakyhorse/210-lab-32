@@ -39,7 +39,18 @@ int main() {
             int r = rand()%100;
             cout << "Lane " << i+1;
             if (r < prob1) {
-                
+                if (!line[i].empty()) {
+                    cout << " Switched: ";
+                    Car c = line[i][line[i].size()-1];
+                    c.print();
+                    line[i].pop_back();
+                    int lane = rand()%4;
+                    //ensures the car switches to another lane
+                    while (lane = i) {
+                        lane = rand()%4;
+                    }
+                    line[lane].push_back(c);
+                } else {cout << "empty";}
             }
             else if (r < (prob1 + prob2)) {
                 cout << " Joined: ";
