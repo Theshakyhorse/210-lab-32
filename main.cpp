@@ -5,7 +5,7 @@
 #include <iomanip>
 using namespace std;
 
-const int Size = 2, W = 15, LANES = 4, runs = 20, prob = 50;
+const int Size = 2, W = 15, LANES = 4, runs = 20, prob1 = 15, prob2 = 39;
 
 int main() {
     srand(time(0));
@@ -33,24 +33,27 @@ int main() {
     }
     
     //performs probability based actions for 20 time periods
-    for (int t = 0; t < 20; t++){
+    for (int t = 0; t < runs; t++){
         cout << "Time: " << t+1 << endl;
         for (int i = 0; i < LANES; i++) {
             int r = rand()%100;
             cout << "Lane " << i+1;
-            if (r < prob) {
+            if (r < prob1) {
+                
+            }
+            else if (r < (prob1 + prob2)) {
+                cout << " Joined: ";
+                Car c = Car();
+                line[i].push_back(c);
+                c.print();
+            }
+            else {
                 cout << " Paid: ";
                 if (!line[i].empty()) {
                     line[i][0].print();
                     line[i].pop_front();
                 }
                 else {cout << "empty";}
-            }
-            else {
-                cout << " Joined: ";
-                Car c = Car();
-                line[i].push_back(c);
-                c.print();
             }
         }
 
