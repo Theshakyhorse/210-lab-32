@@ -58,13 +58,14 @@ int main() {
         cout << endl << "Queue:" << endl;
         for (int i = 0; i < LANES; i++) {
             cout << "Lane " << i+1 << ":" << endl;
-            for (int j = 0; j < line[i].size(); j++) {
-                if (!line[i].empty()) {
+            if (line[i].empty()) {
+                cout << setw(W) << "empty" << endl;
+            } else {
+                for (int j = 0; j < line[i].size(); j++) {
                     cout << setw(W);
                     line[i][j].print();
+                    cout << endl;
                 }
-                else {cout << "empty";}
-                cout << endl;
             }
         }
     }
