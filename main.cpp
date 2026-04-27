@@ -34,22 +34,21 @@ int main() {
     
     //performs probability based actions for 20 time periods
     for (int t = 0; t < 20; t++){
-        cout << "Time: " << t+1 << " Operation: ";
-        
-        int r = rand()%100 +1;
-        //if (!line.empty()) {
-            //if (r <= prob) {
-                //Car c = Car();
-                //line.push_back(c);
-                //cout << "joined lane: ";
-                //c.print();
-            //}
-            //else {
-                //cout << "Car paid: ";
-                //line[0].print();
-                //line.pop_front();
-            //}
-        //}
+        cout << "Time: " << t+1 << endl;
+        for (int i = 0; i < LANES; i++) {
+            int r = rand()%100;
+            cout << "Lane " << i;
+            if (r < prob) {
+                cout << " Paid: ";
+                if (!line[i].empty()) {
+                    line[i][0].print();
+                }
+                cout << endl;
+            }
+            else {
+                cout << " Joined: ";
+            }
+        }
         //outputs current data
         //cout << endl << "Queue:" << endl;
         for (int i = 0; i < LANES; i++) {
@@ -60,7 +59,6 @@ int main() {
                     line[i][j].print();
                     cout << endl;
                 }
-                else {cout << setw(W) << "empty" << endl;}
             }
         }
     }
