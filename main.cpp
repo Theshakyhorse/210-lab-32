@@ -37,28 +37,34 @@ int main() {
         cout << "Time: " << t+1 << endl;
         for (int i = 0; i < LANES; i++) {
             int r = rand()%100;
-            cout << "Lane " << i;
+            cout << "Lane " << i+1;
             if (r < prob) {
                 cout << " Paid: ";
                 if (!line[i].empty()) {
                     line[i][0].print();
+                    line[i].pop_front();
                 }
-                cout << endl;
+                else {cout << "empty";}
             }
             else {
                 cout << " Joined: ";
+                Car c = Car();
+                line[i].push_back(c);
+                c.print();
             }
         }
+
         //outputs current data
-        //cout << endl << "Queue:" << endl;
+        cout << endl << "Queue:" << endl;
         for (int i = 0; i < LANES; i++) {
             cout << "Lane " << i+1 << ":" << endl;
-            for (int j = 0; j < Size; j++) {
+            for (int j = 0; j < line[i].size(); j++) {
                 if (!line[i].empty()) {
                     cout << setw(W);
                     line[i][j].print();
-                    cout << endl;
                 }
+                else {cout << "empty";}
+                cout << endl;
             }
         }
     }
