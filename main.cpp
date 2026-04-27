@@ -5,7 +5,7 @@
 #include <iomanip>
 using namespace std;
 
-const int Size = 2, W = 15, LANES = 4, runs = 20, prob1 = 15, prob2 = 39;
+const int Size = 2, W = 15, LANES = 4, runs = 20, prob1 = 15, prob2 = 39, prob = 50;
 
 int main() {
     srand(time(0));
@@ -38,33 +38,47 @@ int main() {
         for (int i = 0; i < LANES; i++) {
             int r = rand()%100;
             cout << "Lane " << i+1;
-            if (r < prob1) {
-                if (!line[i].empty()) {
-                    cout << " Switched: ";
-                    Car c = line[i][line[i].size()-1];
-                    c.print();
-                    line[i].pop_back();
-                    int lane = rand()%4;
-                    //ensures the car switches to another lane
-                    while (lane = i) {
-                        lane = rand()%4;
-                    }
-                    line[lane].push_back(c);
-                } else {cout << "empty";}
-            }
-            else if (r < (prob1 + prob2)) {
-                cout << " Joined: ";
-                Car c = Car();
-                line[i].push_back(c);
-                c.print();
-            }
-            else {
-                cout << " Paid: ";
-                if (!line[i].empty()) {
-                    line[i][0].print();
-                    line[i].pop_front();
+            if (!line[i].empty()) {
+                if (r < prob1) {
+                    //car switches lanes
+                    if (!line[i].empty()) {
+                        cout << " Switched: ";
+                        Car c = line[i][line[i].size()-1];
+                        c.print();
+                        line[i].pop_back();
+                        int lane = rand()%4;
+                        //ensures the car switches to another lane
+                        while (lane == i) {
+                            lane = rand()%4;
+                        }
+                        line[lane].push_back(c);
+                    } else {cout << " empty" << endl;}
                 }
-                else {cout << "empty";}
+                else if (r < (prob1 + prob2)) {
+                    //adds a car
+                    cout << " Joined: ";
+                    Car c = Car();
+                    line[i].push_back(c);
+                    c.print();
+                }
+                else {
+                    //car pays toll and leaves
+                    cout << " Paid: ";
+                    if (!line[i].empty()) {
+                        line[i][0].print();
+                        line[i].pop_front();
+                    }
+                    else {cout << " empty" << endl;}
+                }
+            } else {
+                //add car now w/ different probability of doing so
+                if (r < prob) {
+                    cout << " Joined: ";
+                    Car c = Car();
+                    line[i].push_back(c);
+                    c.print();
+                }
+                else{cout << " empty" << endl;}
             }
         }
 
