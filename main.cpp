@@ -7,8 +7,6 @@ using namespace std;
 
 const int Size = 2, W = 15, LANES = 4;
 
-//I commented out a lot of stuff becuase it breaks
-//and I can't check if the array of deques works
 int main() {
     srand(time(0));
     //declaration of array of deques
@@ -16,10 +14,9 @@ int main() {
 
     //fills with data
     for (int i = 0; i < LANES; i++){
-        Car c = Car();
-        Car c1 = Car();
-        line[i].push_back(c);
-        line[i].push_back(c1);
+        for (int j = 0; j < Size; j++) {
+            line[i].push_back(Car());
+        }
     }
 
     //outputs data
@@ -29,7 +26,7 @@ int main() {
         for (int j = 0; j < Size; j++) {
             if (!line[i].empty()) {
                 cout << setw(W);
-                line[i][0].print();
+                line[i][j].print();
                 cout << endl;
             }
         }
